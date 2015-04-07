@@ -6,10 +6,10 @@
 The latest stable version in npm is always a safe bet.
 
 ```sh
-$ npm install sails-generate-sailsstripe
+$ npm install sails-stripe
 ```
 
-[![NPM](https://nodei.co/npm/sails-generate-sailsstripe.png?downloads=true&stars=true)](https://nodei.co/npm/sails-generate-sailsstripe/)
+[![NPM](https://nodei.co/npm/sails-stripe.png?downloads=true&stars=true)](https://nodei.co/npm/sails-stripe/)
 
 
 
@@ -73,9 +73,3 @@ If you feel that yours is the better approach, and should be the default, share 
 > If you have an unanswered question that isn't covered here, and that you feel would add value for the community, please feel free to send a PR adding it to this section.
 
 
-
-
-
-
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/8acf2fc2ca0aca8a3018e355ad776ed7 "githalytics.com")](http://githalytics.com/balderdashy/sails-generate-sailsstripe/FAQ.md)
