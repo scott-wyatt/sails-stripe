@@ -1,6 +1,6 @@
 {
   "name": "sails-stripe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "sails generate sails-stripe models and controllers",
   "main": "Generator.js",
   "scripts": {
@@ -11,7 +11,9 @@
     "generator",
     "sails",
     "generate",
-    "plugin"
+    "plugin",
+    "Stripe",
+    "banking"
   ],
   "repository": {
     "type": "git",

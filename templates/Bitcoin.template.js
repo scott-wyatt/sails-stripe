@@ -95,7 +95,8 @@ module.exports = {
 		Bitcoin.findOrCreate(bitcoin.id, bitcoin)
 	    .exec(function (err, foundBitcoin){
 	      if (err) return cb(err);
-	      if (foundBitcoin.lastStripeEvent >= bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent > bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent == bitcoin.lastStripeEvent) return Bitcoin.afterStripeBitcoinReceiverCreated(foundBitcoin, function(err, bitcoin){ return cb(err, bitcoin)});
 	      Bitcoin.update(foundBitcoin.id, bitcoin)
 	      .exec(function(err, updatedBitcoins){
 	      	if (err) return cb(err);
@@ -118,7 +119,8 @@ module.exports = {
 		Bitcoin.findOrCreate(bitcoin.id, bitcoin)
 	    .exec(function (err, foundBitcoin){
 	      if (err) return cb(err);
-	      if (foundBitcoin.lastStripeEvent >= bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent > bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent == bitcoin.lastStripeEvent) return Bitcoin.afterStripeBitcoinReceiverTransactionCreated(foundBitcoin, function(err, bitcoin){ return cb(err, bitcoin)});
 	      Bitcoin.update(foundBitcoin.id, bitcoin)
 	      .exec(function(err, updatedBitcoins){
 	      	if (err) return cb(err);
@@ -141,7 +143,8 @@ module.exports = {
 		Bitcoin.findOrCreate(bitcoin.id, bitcoin)
 	    .exec(function (err, foundBitcoin){
 	      if (err) return cb(err);
-	      if (foundBitcoin.lastStripeEvent >= bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent > bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent == bitcoin.lastStripeEvent) return Bitcoin.afterStripeBitcoinReceiverFilled(foundBitcoin, function(err, bitcoin){ return cb(err, bitcoin)});
 	      Bitcoin.update(foundBitcoin.id, bitcoin)
 	      .exec(function(err, updatedBitcoins){
 	      	if (err) return cb(err);

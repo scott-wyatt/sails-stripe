@@ -89,7 +89,8 @@ module.exports = {
 		Card.findOrCreate(card.id, card)
 	    .exec(function (err, foundCard){
 	      if (err) return cb(err);
-	      if (foundCard.lastStripeEvent >= card.lastStripeEvent) return cb(null, foundCard);
+	      if (foundCard.lastStripeEvent > card.lastStripeEvent) return cb(null, foundCard);
+	      if (foundCard.lastStripeEvent == card.lastStripeEvent) return Card.afterStripeCustomerCardCreated(foundCard, function(err, card){ return cb(err, card)});
 	      Card.update(foundCard.id, card)
 	      .exec(function(err, updatedCards){
 	      	if (err) return cb(err);
@@ -112,7 +113,8 @@ module.exports = {
 		Card.findOrCreate(card.id, card)
 	    .exec(function (err, foundCard){
 	      if (err) return cb(err);
-	      if (foundCard.lastStripeEvent >= card.lastStripeEvent) return cb(null, foundCard);
+	      if (foundCard.lastStripeEvent > card.lastStripeEvent) return cb(null, foundCard);
+	      if (foundCard.lastStripeEvent == card.lastStripeEvent) return Card.afterStripeCustomerCardUpdated(foundCard, function(err, card){ return cb(err, card)});
 	      Card.update(foundCard.id, card)
 	      .exec(function(err, updatedCards){
 	      	if (err) return cb(err);

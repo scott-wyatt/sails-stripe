@@ -114,7 +114,8 @@ module.exports = {
 		Charge.findOrCreate(charge.id, charge)
 	    .exec(function (err, foundCharge){
 	      if (err) return cb(err);
-	      if (foundCharge.lastStripeEvent >= charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent > charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent == charge.lastStripeEvent) return Charge.afterStripeChargeSucceeded(foundCharge, function(err, charge){ return cb(err, charge)});
 	      Charge.update(foundCharge.id, charge)
 	      .exec(function(err, updatedCharges){
 	      	if (err) return cb(err);
@@ -137,7 +138,8 @@ module.exports = {
 		Charge.findOrCreate(charge.id, charge)
 	    .exec(function (err, foundCharge){
 	      if (err) return cb(err);
-	      if (foundCharge.lastStripeEvent >= charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent > charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent == charge.lastStripeEvent) return Charge.afterStripeChargeFailed(foundCharge, function(err, charge){ return cb(err, charge)});
 	      Charge.update(foundCharge.id, charge)
 	      .exec(function(err, updatedCharges){
 	      	if (err) return cb(err);
@@ -160,7 +162,8 @@ module.exports = {
 		Charge.findOrCreate(charge.id, charge)
 	    .exec(function (err, foundCharge){
 	      if (err) return cb(err);
-	      if (foundCharge.lastStripeEvent >= charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent > charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent == charge.lastStripeEvent) return Charge.afterStripeChargeCaptured(foundCharge, function(err, charge){ return cb(err, charge)});
 	      Charge.update(foundCharge.id, charge)
 	      .exec(function(err, updatedCharges){
 	      	if (err) return cb(err);
@@ -183,7 +186,8 @@ module.exports = {
 		Charge.findOrCreate(charge.id, charge)
 	    .exec(function (err, foundCharge){
 	      if (err) return cb(err);
-	      if (foundCharge.lastStripeEvent >= charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent > charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent == charge.lastStripeEvent) return Charge.afterStripeChargeUpdated(foundCharge, function(err, charge){ return cb(err, charge)});
 	      Charge.update(foundCharge.id, charge)
 	      .exec(function(err, updatedCharges){
 	      	if (err) return cb(err);
@@ -206,7 +210,8 @@ module.exports = {
 		Charge.findOrCreate(charge.id, charge)
 	    .exec(function (err, foundCharge){
 	      if (err) return cb(err);
-	      if (foundCharge.lastStripeEvent >= charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent > charge.lastStripeEvent) return cb(null, foundCharge);
+	      if (foundCharge.lastStripeEvent == charge.lastStripeEvent) return Charge.afterStripeChargeRefunded(foundCharge, function(err, charge){ return cb(err, charge)});
 	      Charge.update(foundCharge.id, charge)
 	      .exec(function(err, updatedCharges){
 	      	if (err) return cb(err);

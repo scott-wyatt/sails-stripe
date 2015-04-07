@@ -75,7 +75,8 @@ module.exports = {
 		Customer.findOrCreate(customer.id, customer)
 	    .exec(function (err, createdCustomer){
 	      if (err) return cb(err);
-	      if (createdCustomer.lastStripeEvent >= customer.lastStripeEvent) return cb(null, createdCustomer);
+	      if (createdCustomer.lastStripeEvent > customer.lastStripeEvent) return cb(null, createdCustomer);
+	      if (createdCustomer.lastStripeEvent == customer.lastStripeEvent) return Customer.afterStripeCustomerCreated(createdCustomer, function(err, customer){ return cb(err, customer)});
 	      Customer.update(createdCustomer.id, customer)
 	      .exec(function(err, updatedCustomers){
 	      	if (err) return cb(err);
@@ -98,6 +99,7 @@ module.exports = {
 	    .exec(function (err, foundCustomer){
 	      if (err) return cb(err);
 	      if (foundCustomer.lastStripeEvent >= customer.lastStripeEvent) return cb(null, foundCustomer);
+	      if (foundCustomer.lastStripeEvent == customer.lastStripeEvent) return Customer.afterStripeCustomerUpdated(foundCustomer, function(err, customer){ return cb(err, customer)});
 	      Customer.update(foundCustomer.id, customer)
 	      .exec(function(err, updatedCustomers){
 	      	if (err) return cb(err);

@@ -105,7 +105,7 @@ module.exports = {
 	},
 
 	afterStripeCouponDeleted: function(coupon, next){
-		//Add somethings to do after a coupon is created
+		//Add somethings to do after a coupon is deleted
 		next(null, coupon);
 	},
 }

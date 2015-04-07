@@ -71,7 +71,8 @@ module.exports = {
 		Plan.findOrCreate(plan.id, plan)
 	    .exec(function (err, foundPlan){
 	      if (err) return cb(err);
-	      if (foundPlan.lastStripeEvent >= plan.lastStripeEvent) return cb(null, foundPlan);
+	      if (foundPlan.lastStripeEvent > plan.lastStripeEvent) return cb(null, foundPlan);
+	      if (foundPlan.lastStripeEvent == plan.lastStripeEvent) return Plan.afterStripePlanCreated(foundPlan, function(err, plan){ return cb(err, plan)});
 	      Plan.update(foundPlan.id, plan)
 	      .exec(function(err, updatedPlans){
 	      	if (err) return cb(err);
@@ -94,7 +95,8 @@ module.exports = {
 		Plan.findOrCreate(plan.id, plan)
 	    .exec(function (err, foundPlan){
 	      if (err) return cb(err);
-	      if (foundPlan.lastStripeEvent >= plan.lastStripeEvent) return cb(null, foundPlan);
+	      if (foundPlan.lastStripeEvent > plan.lastStripeEvent) return cb(null, foundPlan);
+	      if (foundPlan.lastStripeEvent == plan.lastStripeEvent) return Plan.afterStripePlanUpdated(foundPlan, function(err, plan){ return cb(err, plan)});
 	      Plan.update(foundPlan.id, plan)
 	      .exec(function(err, updatedPlans){
 	      	if (err) return cb(err);

@@ -75,13 +75,22 @@ module.exports = {
 		Applicationfee.findOrCreate(fee.id, fee)
 	    .exec(function (err, foundApplicationfee){
 	      if (err) return cb(err);
-	      if (foundApplicationfee.lastStripeEvent >= fee.lastStripeEvent) return cb(null, foundApplicationfee);
+	      if (foundApplicationfee.lastStripeEvent > fee.lastStripeEvent) return cb(null, foundApplicationfee);
+	      if (foundApplicationfee.lastStripeEvent == fee.lastStripeEvent) return Applicationfee.afterStripeApplicationFeeCreated(foundApplicationfee, function(err, fee){ return cb(err, fee)});
 	      Applicationfee.update(foundApplicationfee.id, fee)
 	      .exec(function(err, updatedApplicationfees){
 	      	if (err) return cb(err);
-	      	cb(null, updatedApplicationfees[0]);
+	      	if (!updatedApplicationfees) return cb(null, null);
+	      	Applicationfee.afterStripeApplicationFeeCreated(updatedApplicationfees[0], function(err, fee){
+	      		cb(err, fee);
+	      	});
 	      });
 	    });
+	},
+
+	afterStripeApplicationFeeCreated: function(fee, next){
+		//Do somethings after application fee is created
+		next(null, fee);
 	},
 
 	// Stripe Webhook application_fee.refunded
@@ -94,8 +103,16 @@ module.exports = {
 	      Applicationfee.update(foundApplicationfee.id, fee)
 	      .exec(function(err, updatedApplicationfees){
 	      	if (err) return cb(err);
-	      	cb(null, updatedApplicationfees[0]);
+	      	if (!updatedApplicationfees) return cb(null, null);
+	      	Applicationfee.afterStripeApplicationFeeRefunded(updatedApplicationfees[0], function(err, fee){
+	      		cb(err, fee);
+	      	});
 	      });
 	    });
 	},
+
+	afterStripeApplicationFeeRefunded: function(fee, next){
+		//Do somethings after application fee is created
+		next(null, fee);
+	}
 }

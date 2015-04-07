@@ -70,6 +70,7 @@ module.exports = {
 	    .exec(function (err, foundDispute){
 	      if (err) return cb(err);
 	      if (foundDispute.lastStripeEvent > dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent == dispute.lastStripeEvent) return Dispute.afterStripeChargeDisputeCreated(foundDispute, function(err, dispute){ return cb(err, dispute)});
 	      Dispute.update(foundDispute.id, dispute)
 	      .exec(function(err, updatedDisputes){
 	      	if (err) return cb(err);
@@ -93,6 +94,7 @@ module.exports = {
 	    .exec(function (err, foundDispute){
 	      if (err) return cb(err);
 	      if (foundDispute.lastStripeEvent > dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent == dispute.lastStripeEvent) return Dispute.afterStripeChargeDisputeUpdated(foundDispute, function(err, dispute){ return cb(err, dispute)});
 	      Dispute.update(foundDispute.id, dispute)
 	      .exec(function(err, updatedDisputes){
 	      	if (err) return cb(err);
@@ -115,7 +117,8 @@ module.exports = {
 		Dispute.findOrCreate(dispute.id, dispute)
 	    .exec(function (err, foundDispute){
 	      if (err) return cb(err);
-	      if (foundDispute.lastStripeEvent >= dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent > dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent == dispute.lastStripeEvent) return Dispute.afterStripeChargeDisputeClosed(foundDispute, function(err, dispute){ return cb(err, dispute)});
 	      Dispute.update(foundDispute.id, dispute)
 	      .exec(function(err, updatedDisputes){
 	      	if (err) return cb(err);
@@ -138,7 +141,8 @@ module.exports = {
 		Dispute.findOrCreate(dispute.id, dispute)
 	    .exec(function (err, foundDispute){
 	      if (err) return cb(err);
-	      if (foundDispute.lastStripeEvent >= dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent > dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent == dispute.lastStripeEvent) return Dispute.afterStripeChargeDisputeFundsWithdrawn(foundDispute, function(err, dispute){ return cb(err, dispute)});
 	      Dispute.update(foundDispute.id, dispute)
 	      .exec(function(err, updatedDisputes){
 	      	if (err) return cb(err);
@@ -160,7 +164,8 @@ module.exports = {
 		Dispute.findOrCreate(dispute.id, dispute)
 	    .exec(function (err, foundDispute){
 	      if (err) return cb(err);
-	      if (foundDispute.lastStripeEvent >= dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent > dispute.lastStripeEvent) return cb(null, foundDispute);
+	      if (foundDispute.lastStripeEvent == dispute.lastStripeEvent) return Dispute.afterStripeChargeDisputeFundsReinstated(foundDispute, function(err, dispute){ return cb(err, dispute)});
 	      Dispute.update(foundDispute.id, dispute)
 	      .exec(function(err, updatedDisputes){
 	      	if (err) return cb(err);

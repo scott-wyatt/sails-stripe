@@ -68,7 +68,8 @@ module.exports = {
 		Invoiceitem.findOrCreate(invoiceitem.id, invoiceitem)
 	    .exec(function (err, foundInvoiceitem){
 	      if (err) return cb(err);
-	      if (foundInvoiceitem.lastStripeEvent >= invoiceitem.lastStripeEvent) return cb(null, foundInvoiceitem);
+	      if (foundInvoiceitem.lastStripeEvent > invoiceitem.lastStripeEvent) return cb(null, foundInvoiceitem);
+	      if (foundInvoiceitem.lastStripeEvent == invoiceitem.lastStripeEvent) return Invoiceitem.afterStripeInvoiceitemCreated(foundInvoiceitem, function(err, invoiceitem){ return cb(err, invoiceitem)});
 	      Invoiceitem.update(foundInvoiceitem.id, invoiceitem)
 	      .exec(function(err, updatedInvoiceitem){
 	      	if (err) return cb(err);
@@ -91,7 +92,8 @@ module.exports = {
 		Invoiceitem.findOrCreate(invoiceitem.id, invoiceitem)
 	    .exec(function (err, foundInvoiceitem){
 	      if (err) return cb(err);
-	      if (foundInvoiceitem.lastStripeEvent >= invoiceitem.lastStripeEvent) return cb(null, foundInvoiceitem);
+	      if (foundInvoiceitem.lastStripeEvent > invoiceitem.lastStripeEvent) return cb(null, foundInvoiceitem);
+	      if (foundInvoiceitem.lastStripeEvent == invoiceitem.lastStripeEvent) return Invoiceitem.afterStripeInvoiceitemUpdated(foundInvoiceitem, function(err, invoiceitem){ return cb(err, invoiceitem)});
 	      Invoiceitem.update(foundInvoiceitem.id, invoiceitem)
 	      .exec(function(err, updatedInvoiceitem){
 	      	if (err) return cb(err);

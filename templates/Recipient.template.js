@@ -75,7 +75,8 @@ module.exports = {
 		Recipient.findOrCreate(recipient.id, recipient)
 	    .exec(function (err, foundRecipient){
 	      if (err) return cb(err);
-	      if (foundRecipient.lastStripeEvent >= recipient.lastStripeEvent) return cb(null, foundRecipient);
+	      if (foundRecipient.lastStripeEvent > recipient.lastStripeEvent) return cb(null, foundRecipient);
+	      if (foundRecipient.lastStripeEvent == recipient.lastStripeEvent) return Recipient.afterStripeRecipientCreated(foundRecipient, function(err, recipient){ return cb(err, recipient)});
 	      Recipient.update(foundRecipient.id, recipient)
 	      .exec(function(err, updatedRecipients){
 	      	if (err) return cb(err);
@@ -99,6 +100,7 @@ module.exports = {
 	    .exec(function (err, foundRecipient){
 	      if (err) return cb(err);
 	      if (foundRecipient.lastStripeEvent >= recipient.lastStripeEvent) return cb(null, foundRecipient);
+	      if (foundRecipient.lastStripeEvent == recipient.lastStripeEvent) return Recipient.afterStripeRecipientUpdated(foundRecipient, function(err, recipient){ return cb(err, recipient)});
 	      Recipient.update(foundRecipient.id, recipient)
 	      .exec(function(err, updatedRecipients){
 	      	if (err) return cb(err);

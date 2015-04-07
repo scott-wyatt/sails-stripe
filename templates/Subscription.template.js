@@ -104,7 +104,8 @@ module.exports = {
 		Subscription.findOrCreate(subscription.id, subscription)
 	    .exec(function (err, foundSubscription){
 	      if (err) return cb(err);
-	      if (foundSubscription.lastStripeEvent >= subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent > subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent == subscription.lastStripeEvent) return Subscription.afterStripeCustomerSubscriptionCreated(foundSubscription, function(err, subscription){ return cb(err, subscription)});
 	      Subscription.update(foundSubscription.id, subscription)
 	      .exec(function(err, updatedSubscriptions){
 	      	if (err) return cb(err);
@@ -127,7 +128,8 @@ module.exports = {
 		Subscription.findOrCreate(subscription.id, subscription)
 	    .exec(function (err, foundSubscription){
 	      if (err) return cb(err);
-	      if (foundSubscription.lastStripeEvent >= subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent > subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent == subscription.lastStripeEvent) return Subscription.afterStripeCustomerSubscriptionUpdated(foundSubscription, function(err, subscription){ return cb(err, subscription)});
 	      Subscription.update(foundSubscription.id, subscription)
 	      .exec(function(err, updatedSubscriptions){
 	      	if (err) return cb(err);
@@ -170,7 +172,8 @@ module.exports = {
 	    Subscription.findOrCreate(subscription.id, subscription)
 	    .exec(function (err, foundSubscription){
 	      if (err) return cb(err);
-	      if (foundSubscription.lastStripeEvent >= subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent > subscription.lastStripeEvent) return cb(null, foundSubscription);
+	      if (foundSubscription.lastStripeEvent == subscription.lastStripeEvent) return Subscription.afterStripeCustomerSubscriptionTrial(foundSubscription, function(err, subscription){ return cb(err, subscription)});
 	      Subscription.update(foundSubscription.id, subscription)
 	      .exec(function(err, updatedSubscriptions){
 	      	if (err) return cb(err);

@@ -57,7 +57,8 @@ module.exports = {
 		Discount.findOrCreate(discount.id, discount)
 	    .exec(function (err, foundDiscount){
 	      if (err) return cb(err);
-	      if (foundDiscount.lastStripeEvent >= discount.lastStripeEvent) return cb(null, foundDiscount);
+	      if (foundDiscount.lastStripeEvent > discount.lastStripeEvent) return cb(null, foundDiscount);
+	      if (foundDiscount.lastStripeEvent == discount.lastStripeEvent) return Discount.afterStripeCustomerDiscountCreated(foundDiscount, function(err, discount){ return cb(err, discount)});
 	      Discount.update(foundDiscount.id, discount)
 	      .exec(function(err, updatedDiscounts){
 	      	if (err) return cb(err);
@@ -80,7 +81,8 @@ module.exports = {
 		Discount.findOrCreate(discount.id, discount)
 	    .exec(function (err, foundDiscount){
 	      if (err) return cb(err);
-	      if (foundDiscount.lastStripeEvent >= discount.lastStripeEvent) return cb(null, foundDiscount);
+	      if (foundDiscount.lastStripeEvent > discount.lastStripeEvent) return cb(null, foundDiscount);
+	      if (foundDiscount.lastStripeEvent == discount.lastStripeEvent) return Discount.afterStripeCustomerDiscountUpdated(foundDiscount, function(err, discount){ return cb(err, discount)});
 	      Discount.update(foundDiscount.id, discount)
 	      .exec(function(err, updatedDiscounts){
 	      	if (err) return cb(err);

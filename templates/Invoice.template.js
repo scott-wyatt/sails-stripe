@@ -138,7 +138,8 @@ module.exports = {
 		Invoice.findOrCreate(invoice.id, invoice)
 	    .exec(function (err, foundInvoice){
 	      if (err) return cb(err);
-	      if (foundInvoice.lastStripeEvent >= invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent > invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent == invoice.lastStripeEvent) return Invoice.afterStripeInvoiceCreated(foundInvoice, function(err, invoice){ return cb(err, invoice)});
 	      Invoice.update(foundInvoice.id, invoice)
 	      .exec(function(err, updatedInvoices){
 	      	if (err) return cb(err);
@@ -161,7 +162,8 @@ module.exports = {
 		Invoice.findOrCreate(invoice.id, invoice)
 	    .exec(function (err, foundInvoice){
 	      if (err) return cb(err);
-	      if (foundInvoice.lastStripeEvent >= invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent > invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent == invoice.lastStripeEvent) return Invoice.afterStripeInvoiceUpdated(foundInvoice, function(err, invoice){ return cb(err, invoice)});
 	      Invoice.update(foundInvoice.id, invoice)
 	      .exec(function(err, updatedInvoices){
 	      	if (err) return cb(err);
@@ -184,7 +186,8 @@ module.exports = {
 		Invoice.findOrCreate(invoice.id, invoice)
 	    .exec(function (err, foundInvoice){
 	      if (err) return cb(err);
-	      if (foundInvoice.lastStripeEvent >= invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent > invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent == invoice.lastStripeEvent) return Invoice.afterStripeInvoicePaymentSucceeded(foundInvoice, function(err, invoice){ return cb(err, invoice)});
 	      Invoice.update(foundInvoice.id, invoice)
 	      .exec(function(err, updatedInvoices){
 	      	if (err) return cb(err);
@@ -207,7 +210,8 @@ module.exports = {
 		Invoice.findOrCreate(invoice.id, invoice)
 	    .exec(function (err, foundInvoice){
 	      if (err) return cb(err);
-	      if (foundInvoice.lastStripeEvent >= invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent > invoice.lastStripeEvent) return cb(null, foundInvoice);
+	      if (foundInvoice.lastStripeEvent == invoice.lastStripeEvent) return Invoice.afterStripeInvoicePaymentFailed(foundInvoice, function(err, invoice){ return cb(err, invoice)});
 	      Invoice.update(foundInvoice.id, invoice)
 	      .exec(function(err, updatedInvoices){
 	      	if (err) return cb(err);

@@ -104,7 +104,8 @@ module.exports = {
 		Transfer.findOrCreate(transfer.id, transfer)
 	    .exec(function (err, foundTransfer){
 	      if (err) return cb(err);
-	      if (foundTransfer.lastStripeEvent >= transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent > transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent == transfer.lastStripeEvent) return Transfer.afterStripeTransferCreated(foundTransfer, function(err, transfer){ return cb(err, transfer)});
 	      Transfer.update(foundTransfer.id, transfer)
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
@@ -127,7 +128,8 @@ module.exports = {
 		Transfer.findOrCreate(transfer.id, transfer)
 	    .exec(function (err, foundTransfer){
 	      if (err) return cb(err);
-	      if (foundTransfer.lastStripeEvent >= transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent > transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent == transfer.lastStripeEvent) return Transfer.afterStripeTransferUpdated(foundTransfer, function(err, transfer){ return cb(err, transfer)});
 	      Transfer.update(foundTransfer.id, transfer)
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
@@ -150,7 +152,8 @@ module.exports = {
 		Transfer.findOrCreate(transfer.id, transfer)
 	    .exec(function (err, foundTransfer){
 	      if (err) return cb(err);
-	      if (foundTransfer.lastStripeEvent >= transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent > transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent == transfer.lastStripeEvent) return Transfer.afterStripeTransferReversed(foundTransfer, function(err, transfer){ return cb(err, transfer)});
 	      Transfer.update(foundTransfer.id, transfer)
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
@@ -173,7 +176,8 @@ module.exports = {
 		Transfer.findOrCreate(transfer.id, transfer)
 	    .exec(function (err, foundTransfer){
 	      if (err) return cb(err);
-	      if (foundTransfer.lastStripeEvent >= transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent > transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent == transfer.lastStripeEvent) return Transfer.afterStripeTransferPaid(foundTransfer, function(err, transfer){ return cb(err, transfer)});
 	      Transfer.update(foundTransfer.id, transfer)
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
@@ -196,7 +200,8 @@ module.exports = {
 		Transfer.findOrCreate(transfer.id, transfer)
 	    .exec(function (err, foundTransfer){
 	      if (err) return cb(err);
-	      if (foundTransfer.lastStripeEvent >= transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent > transfer.lastStripeEvent) return cb(null, foundTransfer);
+	      if (foundTransfer.lastStripeEvent == transfer.lastStripeEvent) return Transfer.afterStripeTransferFailed(foundTransfer, function(err, transfer){ return cb(err, transfer)});
 	      Transfer.update(foundTransfer.id, transfer)
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
