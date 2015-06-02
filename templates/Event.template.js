@@ -158,6 +158,60 @@ module.exports = {
 					return cb(err, card);	
 				});
 			},
+			'customer.source.created': function(){
+				var _sourceTypes, _sourceType;
+				_sourceTypes = {
+					'card' : Card.stripeCustomerCardCreated,
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverCreated
+				};
+				_sourceType = _sourceTypes[stripeObject.object];
+				if(typeof _sourceType  !== 'function'){
+					var err = new Error();
+			    	err.message = 'customer.source.created','can not handle',stripeObject.object;
+			    	err.status = 500;
+					return cb(err, stripeObject);
+				}else{
+					_sourceType(stripeObject, function (err, source) {
+						return cb(err, source);	
+					});
+				}
+			},
+			'customer.source.updated': function(){
+				var _sourceTypes, _sourceType;
+				_sourceTypes = {
+					'card' : Card.stripeCustomerCardUpdated,
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverUpdated
+				};
+				_sourceType = _sourceTypes[stripeObject.object];
+				if(typeof _sourceType  !== 'function'){
+					var err = new Error();
+			    	err.message = 'customer.source.updated','can not handle',stripeObject.object;
+			    	err.status = 500;
+					return cb(err, stripeObject);
+				}else{
+					_sourceType(stripeObject, function (err, source) {
+						return cb(err, source);	
+					});
+				}
+			},
+			'customer.source.deleted': function(){
+				var _sourceTypes, _sourceType;
+				_sourceTypes = {
+					'card' : Card.stripeCustomerCardDeleted,
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverDeleted
+				};
+				_sourceType = _sourceTypes[stripeObject.object];
+				if(typeof _sourceType  !== 'function'){
+					var err = new Error();
+			    	err.message = 'customer.source.deleted','can not handle',stripeObject.object;
+			    	err.status = 500;
+					return cb(err, stripeObject);
+				}else{
+					_sourceType(stripeObject, function (err, source) {
+						return cb(err, source);	
+					});
+				}
+			},
 			'customer.subscription.created': function(){
 				Subscription.stripeCustomerSubscriptionCreated(stripeObject, function (err, subscription) {
 					return cb(err, subscription);	
