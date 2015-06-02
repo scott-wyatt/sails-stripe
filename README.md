@@ -39,6 +39,10 @@ module.exports.routes = {
 }
 ```
 
+### 4. configure Stripe.com to point to your webhook
+
+#### Account-> webhooks-> +Add endpoint-> https://{yourdomain}/api/stripe/webhook
+
 ### Development
 
 To get started quickly and see this generator in action, ...
