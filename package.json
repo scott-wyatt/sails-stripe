@@ -1,6 +1,6 @@
 {
   "name": "sails-stripe",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "sails generate sails-stripe models and controllers",
   "main": "Generator.js",
   "scripts": {
@@ -22,8 +22,8 @@
   "author": "scottBwyatt",
   "license": "MIT",
   "dependencies": {
-  	"lodash": ">=2.4.x",
-  	"merge-defaults": "~0.1.0"
+    "lodash": ">=2.4.x",
+    "merge-defaults": "~0.1.0"
   },
   "devDependencies": {
     "sails-generate": "*",
