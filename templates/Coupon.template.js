@@ -37,7 +37,7 @@ module.exports = {
 			type: 'string' //"once"
 		},
 		redeem_by: {
-			type: 'integer' //1390771427
+			type: 'datetime' //1390771427
 		},
 		max_redemptions:  {
 			type: 'integer' //null
@@ -64,6 +64,9 @@ module.exports = {
 	beforeValidate: function (values, cb){
 		if(values.created){
 			values.created = new Date(values.created * 1000);
+		}
+		if(values.redeem_by){
+			values.redeem_by = new Date(values.redeem_by * 1000);
 		}
 		cb();
 	},
