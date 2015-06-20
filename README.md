@@ -54,7 +54,7 @@ Also see `CONTRIBUTING.md` for more information on overriding/enhancing existing
 See `FAQ.md`.
 
 ### Change Log
-
+#### v0.0.6 - Updates coupons redeem_by dates to work as date objects
 #### v0.0.5 - Update to handle Stripe customer.source CRUD operations;
 
 ### More Resources
