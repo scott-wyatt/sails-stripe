@@ -49,10 +49,10 @@ module.exports = {
 		currency: {
 			type: 'string'
 		},
-		cards: {
+		sources: {
 			type: 'json'
 		},
-		default_card: {
+		default_source: {
 			type: 'string'
 		},
 
