@@ -107,6 +107,13 @@ module.exports = {
     './api/models/Transferreversal.js': { template: 'Transferreversal.template.js' },
     './api/models/Bitcoin.js': { template: 'Bitcoin.template.js' },
     './api/models/Stripeaccount.js': { template: 'Stripeaccount.template.js' },
+    './api/models/Bankaccount.js': { template: 'Bankaccount.template.js' },
+    './api/models/Product.js': { template: 'Product.template.js' },
+    './api/models/Sku.js': { template: 'Sku.template.js' },
+    './api/models/Order.js': { template: 'Order.template.js' },
+    './api/models/Orderitem.js': { template: 'Orderitem.template.js' },
+    './api/models/Token.js': { template: 'Token.template.js' },
+    './api/models/Alipayaccount.js': { template: 'Alipayaccount.template.js' },
 
     './api/controllers/ApplicationfeeController.js': { template: 'ApplicationfeeController.template.js' },
     './api/controllers/ApplicationfeerefundController.js': { template: 'ApplicationfeerefundController.template.js' },
@@ -127,6 +134,13 @@ module.exports = {
     './api/controllers/TransferreversalController.js': { template: 'TransferreversalController.template.js' },
     './api/controllers/BitcoinController.js': { template: 'BitcoinController.template.js' },
     './api/controllers/StripeaccountController.js': { template: 'StripeaccountController.template.js' },
+    './api/controllers/BankaccountController.js': { template: 'BankaccountController.template.js' },
+    './api/controllers/ProductController.js': { template: 'ProductController.template.js' },
+    './api/controllers/SkuController.js': { template: 'SkuController.template.js' },
+    './api/controllers/OrderController.js': { template: 'OrderController.template.js' },
+    './api/controllers/OrderitemController.js': { template: 'OrderitemController.template.js' },
+    './api/controllers/TokenController.js': { template: 'TokenController.template.js' },
+    './api/controllers/AlipayaccountController.js': { template: 'AlipayaccountController.template.js' },
 
     './api/controllers/StripeController.js': { template: 'StripeController.template.js' },
 

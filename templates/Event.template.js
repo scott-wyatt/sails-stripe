@@ -54,16 +54,28 @@ module.exports = {
 
 		_stripeEvents = {
 			
+			//Account
 			'account.updated': function(){
 				Stripeaccount.stripeAccountUpdated(stripeObject, function (err, account) {
 					return cb(err, account);
 				});
+			},
+			'account.external_account.created': function(){
+				return cb(null, null);
+			},
+			'account.external_account.updated': function(){
+				return cb(null, null);
+			},
+			'account.external_account.deleted': function(){
+				return cb(null, null);
 			},
 			'account.application.deauthorized': function(){
 				Stripeaccount.stripeAccountApplicationDeauthorized(stripeObject, function (err, application) {
 					return cb(err, application);
 				});
 			},
+
+			//Application
 			'application_fee.created': function(){
 				Applicationfee.stripeApplicationFeeCreated(stripeObject, function (err, fee) {
 					return cb(err, fee);
@@ -74,10 +86,14 @@ module.exports = {
 					return cb(err, fee);	
 				});
 			},
+
+			//Balance
 			'balance.available': function () {
 				//Balance Objects have no Id.
 				return cb(null, null);
 			},
+
+			//Charge
 			'charge.succeeded': function(){
 				Charge.stripeChargeSucceeded(stripeObject, function (err, charge) {
 					return cb(err, charge);
@@ -128,6 +144,20 @@ module.exports = {
 					return cb(err, dispute);	
 				});
 			},
+
+			//Coupon
+			'coupon.created': function(){
+				Coupon.stripeCouponCreated(stripeObject, function (err, coupon) {
+					return cb(err, coupon);
+				});
+			},
+			'coupon.deleted': function(){
+				Coupon.stripeCouponDeleted(stripeObject, function (err, coupon) {
+					return cb(err, coupon);
+				});
+			},
+
+			//Customer
 			'customer.created': function(){
 				Customer.stripeCustomerCreated(stripeObject, function (err, customer) {
 					return cb(err, customer);	
@@ -247,6 +277,8 @@ module.exports = {
 					return cb(err, discount);	
 				});
 			},
+
+			//Invoice
 			'invoice.created': function(){
 				Invoice.stripeInvoiceCreated(stripeObject, function (err, invoice) {
 					return cb(err, invoice);	
@@ -267,6 +299,8 @@ module.exports = {
 					return cb(err, invoice);
 				});
 			},
+
+			//Invoice Item
 			'invoiceitem.created': function(){ 
 				Invoiceitem.stripeInvoiceitemCreated(stripeObject, function (err, invoiceitem) {
 					return cb(err, invoiceitem);
@@ -282,6 +316,30 @@ module.exports = {
 					return cb(err, invoiceitem);	
 				});
 			},
+
+			//Order
+			'order.created': function(){
+				Order.stripeOrderCreated(stripeObject, function (err, order) {
+					return cb(err, order);
+				});
+			},
+			'order.payment_failed': function(){
+				Order.stripeOrderPaymentFailed(stripeObject, function (err, order) {
+					return cb(err, order);
+				});
+			},
+			'order.payment_succeeded': function(){
+				Order.stripeOrderPaymentSucceeded(stripeObject, function (err, order) {
+					return cb(err, order);
+				});
+			},
+			'order.updated': function(){
+				Order.stripeOrderUpdated(stripeObject, function (err, order) {
+					return cb(err, order);
+				});
+			},
+
+			//Plan
 			'plan.created': function(){
 				Plan.stripePlanCreated(stripeObject, function (err, plan) {
 					return cb(err, plan);	
@@ -297,16 +355,20 @@ module.exports = {
 					return cb(err, plan);	
 				});
 			},
-			'coupon.created': function(){
-				Coupon.stripeCouponCreated(stripeObject, function (err, coupon) {
-					return cb(err, coupon);
+
+			//Product
+			'product.created': function(){
+				Product.stripeProductCreated(stripeObject, function (err, product) {
+					return cb(err, product);	
 				});
 			},
-			'coupon.deleted': function(){
-				Coupon.stripeCouponDeleted(stripeObject, function (err, coupon) {
-					return cb(err, coupon);
+			'product.updated': function(){
+				Product.stripeProductUpdated(stripeObject, function (err, product) {
+					return cb(err, product);	
 				});
-			},
+			},			
+
+			//Recipient
 			'recipient.created': function(){
 				Recipient.stripeRecipientCreated(stripeObject, function (err, recipient) {
 					return cb(err, recipient);
@@ -322,6 +384,20 @@ module.exports = {
 					return cb(err, recipient);
 				});
 			},
+
+			//Sku
+			'sku.created': function(){
+				Sku.stripeSkuCreated(stripeObject, function (err, sku) {
+					return cb(err, sku);	
+				});
+			},
+			'sku.updated': function(){
+				Sku.stripeSkuCreated(stripeObject, function (err, sku) {
+					return cb(err, sku);	
+				});
+			},
+
+			//Transfer
 			'transfer.created': function(){
 				Transfer.stripeTransferCreated(stripeObject, function (err, transfer) {
 					return cb(err, transfer);
@@ -347,6 +423,8 @@ module.exports = {
 					return cb(err, transfer);
 				});
 			},
+
+			//Bitcoin
 			'bitcoin.receiver.created': function(){
 				Bitcoin.stripeBitcoinReceiverCreated(stripeObject, function (err, bitcoin) {
 					return cb(err, bitcoin);
@@ -362,6 +440,8 @@ module.exports = {
 					return cb(err, bitcoin);
 				});
 			},
+
+			//Ping
 			'ping': function () {
 				//May be sent by Stripe at any time to see if a provided webhook URL is working. So return a 200
 				return cb(null, "OK");

@@ -9,6 +9,7 @@
 module.exports = {
 	
 	autoPK: false,
+	
 	attributes: {
 		
 		id: {
