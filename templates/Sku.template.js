@@ -91,7 +91,7 @@ module.exports = {
 	},
 
 	afterStripeSkuCreated: function(sku, next){
-		//Do somethings after an invoice item is created
+		//Do somethings after a sku is created
 		next(null, sku);
 	},
 
@@ -115,7 +115,7 @@ module.exports = {
 	},
 
 	afterStripeSkuUpdated: function(sku, next){
-		//Do somethings after an invoice item is created
+		//Do somethings after a sku is updated
 		next(null, sku);
 	},
 }

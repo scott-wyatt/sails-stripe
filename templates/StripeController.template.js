@@ -39,7 +39,7 @@
 				//If the created stripe event was not Created, stripe will need to try again in 1 hour
 				if(!stripeEvent){
 					err = new Error();
-			    	err.message = require('util').format('Could not findOrCreate w/ id=%s.', params.id);
+			    	err.message = require('util').format('Could not create w/ id=%s.', params.id);
 			    	err.status = 500;
 			    	return res.serverError(err);
 				}
