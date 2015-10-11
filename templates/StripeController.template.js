@@ -11,35 +11,51 @@
  	webhook: function(req, res){
 		
 		var params = req.params.all();
-		console.log(params);
-		
+			
 		var eventDate = new Date(params.created * 1000);
-		console.log("EVENT:", eventDate);
+		sails.log("EVENT:", eventDate);
 
 		//We add this in incase Stripe Events get out of Order
 		params.data.object.lastStripeEvent = eventDate;
 
-		Event.findOrCreate(params.id, params)
-		.exec(function(err, stripeEvent){
+		//Check if this event is already in the system
+		Event.count(params.id)
+		.exec(function(err, count){
+			//If err, stripe will need to retry this webhook in 1 hour
 			if(err) return res.serverError(err);
-			if(!stripeEvent){
-				err = new Error();
-		    	err.message = require('util').format('Could not findOrCreate w/ id=%s.', params.id);
-		    	err.status = 500;
-		    	return res.serverError(err);
+
+			//If in the system, let stripe know it doesn't need to reattempt the webhook
+			if(count > 0){
+				return res.ok(params);
 			}
 
-			Event.getStripeEvent(params.type, params.data.object, function(err, response){
-				if(err){
-					sails.log.error(err);
-					return res.serverError(err);
-				}else{
-					if(!res.headersSent){
-						res.ok(response);
-					}else{
-						sails.log.error("Tried to Send Double Headers...");
-					}
+			//Create the Event in the database
+			Event.create(params)
+			.exec(function(err, stripeEvent){
+
+				//If there is an error creating the event, stripe will need to try again in 1 hour
+				if(err) return res.serverError(err);
+				
+				//If the created stripe event was not Created, stripe will need to try again in 1 hour
+				if(!stripeEvent){
+					err = new Error();
+			    	err.message = require('util').format('Could not findOrCreate w/ id=%s.', params.id);
+			    	err.status = 500;
+			    	return res.serverError(err);
 				}
+
+				if(!res.headersSent){
+					res.ok(stripeEvent);
+				}
+
+				//Perists the rest to the background
+				Event.getStripeEvent(params.type, params.data.object, function(err, response){
+					if(err){
+						sails.log.error(err);
+					}else{
+						sails.log(response);
+					}
+				});
 			});
 		});
 	}
