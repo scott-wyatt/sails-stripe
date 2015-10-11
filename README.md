@@ -2,7 +2,13 @@
 
 A `sails-stripe` generator for use with the Sails command-line interface.
 
-Sails-stripe auto generates Models and Controllers for use with the stripe-node api to work with Waterline. It also generates a Stripe Controller with a route for Stripe webhooks [/api/stripe/webhook](/api/stripe/webhook). It auto checks each webook event to see if it is newer so your DB is in sync with what you have on Stripe.com, niffty eh?
+## Status
+
+> ##### Stability: [2](http://nodejs.org/api/documentation.html#documentation_stability_index) - Stable
+
+Sails-stripe auto generates Models and Controllers for use with the stripe-node api to work with Waterline. It also generates a Stripe Controller with a route for Stripe webhooks [/api/stripe/webhook](/api/stripe/webhook). It auto checks to see if the 
+event has already been recorded and then checks if the event action is the latest action so that your DB doesn't get overridden with
+old data. Niffty eh? For more information check out [Stripe webhooks](https://stripe.com/docs/webhooks).
 
 ### Installation
 
@@ -54,10 +60,25 @@ Also see `CONTRIBUTING.md` for more information on overriding/enhancing existing
 See `FAQ.md`.
 
 ### Change Log
-#### v0.0.8 - Add Products, Orders, SKUs, Alipay, Bank Accounts, Tokens
 
-#### v0.0.6 - Updates coupons redeem_by dates to work as date objects
-#### v0.0.5 - Update to handle Stripe customer.source CRUD operations;
+#### v0.0.9 
+- Add Stable Release.
+- Replaces findOrCreate for the faster lookup of Count.
+- Persists getStripeEvent to background handeling to prevent timeout.
+
+#### v0.0.8 
+- Add Products, Orders, SKUs, Alipay, Bank Accounts, Tokens
+
+#### v0.0.6 
+- Updates coupons redeem_by dates to work as date objects
+
+#### v0.0.5 
+- Update to handle Stripe customer.source CRUD operations;
+
+### Roadmap
+
+#### v0.1.0
+- Validate each Stripe Event using the Stipe recommended `round trip`
 
 ### More Resources
 
