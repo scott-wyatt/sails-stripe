@@ -59,6 +59,13 @@ Also see `CONTRIBUTING.md` for more information on overriding/enhancing existing
 
 See `FAQ.md`.
 
+### Roadmap
+
+#### v0.1.0
+- Eliminate as many Race scenarios as possible
+- Add Bank Account as Customer Source
+- DONE: Validate each Stripe Event using the Stipe recommended `round trip`
+
 ### Change Log
 
 #### v0.0.9 
@@ -74,11 +81,6 @@ See `FAQ.md`.
 
 #### v0.0.5 
 - Update to handle Stripe customer.source CRUD operations;
-
-### Roadmap
-
-#### v0.1.0
-- Validate each Stripe Event using the Stipe recommended `round trip`
 
 ### More Resources
 
