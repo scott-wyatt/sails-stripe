@@ -7,7 +7,7 @@ A `sails-stripe` generator for use with the Sails command-line interface.
 > ##### Stability: [2](http://nodejs.org/api/documentation.html#documentation_stability_index) - Stable
 
 Sails-stripe auto generates Models and Controllers for use with the stripe-node api to work with Waterline. It also generates a Stripe Controller with a route for Stripe webhooks [/api/stripe/webhook](/api/stripe/webhook). It auto checks to see if the 
-event has already been recorded and then checks if the event action is the latest action so that your DB doesn't get overridden with
+event is valid or has already been recorded and then checks if the event action is the latest action so that your DB doesn't get overridden with
 old data. Niffty eh? For more information check out [Stripe webhooks](https://stripe.com/docs/webhooks).
 
 ### Installation

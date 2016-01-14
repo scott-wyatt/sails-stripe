@@ -48,7 +48,7 @@ module.exports = {
 		if(values.id){
 			var err = new Error();
 		    err.message = require('util').format('An Event ID is required', values);
-		    err.status = 404;
+		    err.status = 403;
 			return cb(err);
 		}
 		cb();
@@ -75,12 +75,15 @@ module.exports = {
 				});
 			},
 			'account.external_account.created': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.external_account.updated': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.external_account.deleted': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.application.deauthorized': function(){
@@ -89,7 +92,7 @@ module.exports = {
 				});
 			},
 
-			//Application
+			//Application Fee
 			'application_fee.created': function(){
 				Applicationfee.stripeApplicationFeeCreated(stripeObject, function (err, fee) {
 					return cb(err, fee);
