@@ -113,6 +113,54 @@ module.exports = {
 		next(null, bitcoin);
 	},
 
+	// Stripe Webhook bitcoin.receiver.updated
+	stripeBitcoinReceiverUpdated: function (bitcoin, cb) {
+
+		Bitcoin.findOrCreate(bitcoin.id, bitcoin)
+	    .exec(function (err, foundBitcoin){
+	      if (err) return cb(err);
+	      if (foundBitcoin.lastStripeEvent > bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent == bitcoin.lastStripeEvent) return Bitcoin.afterStripeBitcoinReceiverCreated(foundBitcoin, function(err, bitcoin){ return cb(err, bitcoin)});
+	      Bitcoin.update(foundBitcoin.id, bitcoin)
+	      .exec(function(err, updatedBitcoins){
+	      	if (err) return cb(err);
+	      	if (!updatedBitcoins) return cb(null, null);
+	      	Bitcoin.afterStripeBitcoinReceiverUpdated(updatedBitcoins[0], function(err, bitcoin){
+	      		cb(err, bitcoin);
+	      	});
+	      });
+	    });
+	},
+
+	afterStripeBitcoinReceiverUpdated: function (bitcoin, next) {
+		//Add somethings to do after a bitcoin receiver is created
+		next(null, bitcoin);
+	},
+
+	// Stripe Webhook bitcoin.receiver.updated
+	stripeBitcoinReceiverFilled: function (bitcoin, cb) {
+
+		Bitcoin.findOrCreate(bitcoin.id, bitcoin)
+	    .exec(function (err, foundBitcoin){
+	      if (err) return cb(err);
+	      if (foundBitcoin.lastStripeEvent > bitcoin.lastStripeEvent) return cb(null, foundBitcoin);
+	      if (foundBitcoin.lastStripeEvent == bitcoin.lastStripeEvent) return Bitcoin.afterStripeBitcoinReceiverCreated(foundBitcoin, function(err, bitcoin){ return cb(err, bitcoin)});
+	      Bitcoin.update(foundBitcoin.id, bitcoin)
+	      .exec(function(err, updatedBitcoins){
+	      	if (err) return cb(err);
+	      	if (!updatedBitcoins) return cb(null, null);
+	      	Bitcoin.afterStripeBitcoinReceiverFilled(updatedBitcoins[0], function(err, bitcoin){
+	      		cb(err, bitcoin);
+	      	});
+	      });
+	    });
+	},
+
+	afterStripeBitcoinReceiverFilled: function (bitcoin, next) {
+		//Add somethings to do after a bitcoin receiver is created
+		next(null, bitcoin);
+	},
+
 	// Stripe Webhook bitcoin.receiver.transaction.created
 	stripeBitcoinReceiverTransactionCreated: function (bitcoin, cb) {
 

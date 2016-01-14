@@ -47,7 +47,7 @@ module.exports = {
 			type: 'boolean' //false
 		},
 		metadata: {
-			type: 'json'
+			type: 'json' // {}
 		},
 
 		//Added to Model and doesn't exists in Stripe
