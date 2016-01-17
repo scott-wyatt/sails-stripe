@@ -45,7 +45,21 @@ module.exports = {
 		if(values.created){
 			values.created = new Date(values.created * 1000);
 		}
+		if(values.id){
+			var err = new Error();
+		    err.message = require('util').format('An Event ID is required', values);
+		    err.status = 403;
+			return cb(err);
+		}
 		cb();
+	},
+	beforeCreate: function(values, cb){
+		stripe.events.retrieve(values.id, function(err, event) {
+        	if (err) {
+        		return cb(err);
+        	}
+        	cb();
+    	});
 	},
 
 	getStripeEvent: function(type, stripeObject, cb) {
@@ -61,12 +75,15 @@ module.exports = {
 				});
 			},
 			'account.external_account.created': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.external_account.updated': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.external_account.deleted': function(){
+				//TODO: No way to currently handle this event
 				return cb(null, null);
 			},
 			'account.application.deauthorized': function(){
@@ -75,7 +92,7 @@ module.exports = {
 				});
 			},
 
-			//Application
+			//Application Fee
 			'application_fee.created': function(){
 				Applicationfee.stripeApplicationFeeCreated(stripeObject, function (err, fee) {
 					return cb(err, fee);
@@ -91,6 +108,28 @@ module.exports = {
 			'balance.available': function () {
 				//Balance Objects have no Id.
 				return cb(null, null);
+			},
+
+			//Bitcoin
+			'bitcoin.receiver.created': function () {
+				Bitcoin.stripeBitcoinReceiverCreated(stripeObject, function (err, receiver) {
+					return cb(err, receiver);
+				});
+			},
+			'bitcoin.receiver.filled': function () {
+				Bitcoin.stripeBitcoinReceiverFilled(stripeObject, function (err, receiver) {
+					return cb(err, receiver);
+				});
+			},
+			'bitcoin.receiver.updated': function () {
+				Bitcoin.stripeBitcoinReceiverUpdated(stripeObject, function (err, receiver) {
+					return cb(err, receiver);
+				});
+			},
+			'bitcoin.receiver.transaction.created': function () {
+				Bitcoin.stripeBitcoinReceiverTransactionCreated(stripeObject, function (err, receiver) {
+					return cb(err, receiver);
+				});
 			},
 
 			//Charge
