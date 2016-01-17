@@ -10,6 +10,10 @@ Sails-stripe auto generates Models and Controllers for use with the stripe-node 
 event is valid or has already been recorded and then checks if the event action is the latest action so that your DB doesn't get overridden with
 old data. Niffty eh? For more information check out [Stripe webhooks](https://stripe.com/docs/webhooks).
 
+I'm also proud to say, sails-stripe has handled over 2.5 million Stipe events with grace (about 5 million dollars in transactions that I personally know of), which is why I am labeling it as "stable".  
+
+From this point on, I would like to adopt new Stripe requests and refreain from editing the core.  However, your PRs are always welcome! (You are what makes this project awesome).
+
 ### Installation
 
 ```sh
@@ -48,6 +52,9 @@ module.exports.routes = {
 ### 4. configure Stripe.com to point to your webhook
 
 #### Account-> webhooks-> +Add endpoint-> https://{yourdomain}/api/stripe/webhook
+
+### 5. You will need to use the Node.js Stripe API.
+Currently, sails-stripe defaults to using the Stripe API with `stripe`, however, feel free to use your own service after install.
 
 ### Development
 
