@@ -70,7 +70,7 @@ See `FAQ.md`.
 
 #### v0.1.0
 - Eliminate as many Race scenarios as possible
-- Add Bank Account as Customer Source
+- DONE: Add Bank Account as Customer Source
 - DONE: Validate each Stripe Event using the Stipe recommended `round trip`
 
 ### Change Log
