@@ -75,6 +75,9 @@ See `FAQ.md`.
 
 ### Change Log
 
+#### v0.0.10
+- Add Bank Account as Customer Source.
+
 #### v0.0.9 
 - Add Stable Release.
 - Replaces findOrCreate for the faster lookup of Count.

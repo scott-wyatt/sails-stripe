@@ -231,7 +231,8 @@ module.exports = {
 				var _sourceTypes, _sourceType;
 				_sourceTypes = {
 					'card' : Card.stripeCustomerCardCreated,
-					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverCreated
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverCreated,
+					'bank_account' : Bankaccount.stripeCustomerSourceCreated
 				};
 				_sourceType = _sourceTypes[stripeObject.object];
 				if(typeof _sourceType  !== 'function'){
@@ -249,7 +250,8 @@ module.exports = {
 				var _sourceTypes, _sourceType;
 				_sourceTypes = {
 					'card' : Card.stripeCustomerCardUpdated,
-					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverUpdated
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverUpdated,
+					'bank_account' : Bankaccount.stripeCustomerSourceUpdated
 				};
 				_sourceType = _sourceTypes[stripeObject.object];
 				if(typeof _sourceType  !== 'function'){
@@ -267,7 +269,8 @@ module.exports = {
 				var _sourceTypes, _sourceType;
 				_sourceTypes = {
 					'card' : Card.stripeCustomerCardDeleted,
-					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverDeleted
+					'bitcoin_receiver' : Bitcoin.stripeBitcoinReceiverDeleted,
+					'bank_account' : Bankaccount.stripeCustomerSourceDeleted
 				};
 				_sourceType = _sourceTypes[stripeObject.object];
 				if(typeof _sourceType  !== 'function'){

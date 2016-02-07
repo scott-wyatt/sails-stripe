@@ -49,6 +49,9 @@ module.exports = {
 		metadata: {
 			type: 'json' // {}
 		},
+		customer: {
+			model: 'Customer'
+		}
 
 		//Added to Model and doesn't exists in Stripe
 		lastStripeEvent: {
