@@ -11,9 +11,9 @@ module.exports = {
 	autoPK: false,
 	attributes: {
 		id: {
-	  		type: 'string', //"Trial"
+			type: 'string', //"Trial"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		created: {
 			type: 'datetime' //1390771427

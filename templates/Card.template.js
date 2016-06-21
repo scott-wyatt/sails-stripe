@@ -11,9 +11,9 @@ module.exports = {
 	autoPK: false,
 	attributes: {
 		id: {
-	  		type: 'string', //"card_5R82bJXG5gm5bt"
+			type: 'string', //"card_5R82bJXG5gm5bt"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: { 
 			type: 'string' //"card"

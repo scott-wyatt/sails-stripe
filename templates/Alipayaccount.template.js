@@ -15,7 +15,7 @@ module.exports = {
 		id: {
 			type: 'string', //"aliacc_16q4o6Bw8aZ7QiYmdCfHA1U9"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: {
 			type: 'string' //"alipay_account"

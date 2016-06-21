@@ -64,7 +64,7 @@ module.exports = {
 
 	getStripeEvent: function(type, stripeObject, cb) {
 		
-		var _fn, _stripeEvents;
+		var _stripeEvents;
 
 		_stripeEvents = {
 			
@@ -463,23 +463,6 @@ module.exports = {
 			'transfer.failed': function(){
 				Transfer.stripeTransferFailed(stripeObject, function (err, transfer) {
 					return cb(err, transfer);
-				});
-			},
-
-			//Bitcoin
-			'bitcoin.receiver.created': function(){
-				Bitcoin.stripeBitcoinReceiverCreated(stripeObject, function (err, bitcoin) {
-					return cb(err, bitcoin);
-				});
-			},
-			'bitcoin.receiver.transaction.created': function(){
-				Bitcoin.stripeBitcoinReceiverTransactionCreated(stripeObject, function (err, bitcoin) {
-					return cb(err, bitcoin);
-				});
-			},
-			'bitcoin.receiver.filled': function(){
-				Bitcoin.stripeBitcoinReceiverFilled(stripeObject, function (err, bitcoin) {
-					return cb(err, bitcoin);
 				});
 			},
 

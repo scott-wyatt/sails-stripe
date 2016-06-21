@@ -11,9 +11,9 @@ module.exports = {
 	autoPK: false,
 	attributes: {
 		id: {
-	  		type: 'string', //"acct_xxxxxxxxxxxxxxx",
+			type: 'string', //"acct_xxxxxxxxxxxxxxx",
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		email: {
 			type: 'email'

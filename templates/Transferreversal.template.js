@@ -11,9 +11,9 @@ module.exports = {
 	autoPK: false,
 	attributes: {
 		id: {
-	  		type: 'string', //"trr_xxxxxxxxxxxx"
+			type: 'string', //"trr_xxxxxxxxxxxx"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		amount: {
 			type: 'integer' //90800
