@@ -8,9 +8,9 @@ A `sails-stripe` generator for use with the Sails command-line interface.
 
 Sails-stripe auto generates Models and Controllers for use with the stripe-node api to work with Waterline. It also generates a Stripe Controller with a route for Stripe webhooks [/api/stripe/webhook](/api/stripe/webhook). It auto checks to see if the 
 event is valid or has already been recorded and then checks if the event action is the latest action so that your DB doesn't get overridden with
-old data. Niffty eh? For more information check out [Stripe webhooks](https://stripe.com/docs/webhooks).
+old data if webhooks get out of sync. Niffty eh? For more information check out [Stripe webhooks](https://stripe.com/docs/webhooks).
 
-I'm also proud to say, sails-stripe has handled over 2.5 million Stipe events with grace (about 5 million dollars in transactions that I personally know of), which is why I am labeling it as "stable".  
+I'm also proud to say, sails-stripe has handled over 5 million Stipe events with grace (about 10 million dollars in transactions that I personally know of), which is why I am labeling it as "stable".  
 
 From this point on, I would like to adopt new Stripe requests and refreain from editing the core.  However, your PRs are always welcome! (You are what makes this project awesome).
 
@@ -74,6 +74,9 @@ See `FAQ.md`.
 - DONE: Validate each Stripe Event using the Stipe recommended `round trip`
 
 ### Change Log
+
+#### v0.0.13
+- Fix bitcoin redunancies and logic
 
 #### v0.0.10
 - Add Bank Account as Customer Source.
