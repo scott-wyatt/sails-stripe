@@ -11,9 +11,9 @@ module.exports = {
 	autoPK: false,
 	attributes: {
 		id: {
-	  		type: 'string', //"tr_xxxxxxxxxxxx"
+			type: 'string', //"tr_xxxxxxxxxxxx"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: {
 			type: 'string' //"transfer"
@@ -49,7 +49,7 @@ module.exports = {
 			type: 'string' //"txn_2v2VcOoVgfuxzP"
 		},
 		bank_account: {
-	  		type: 'json' //{"object": "bank_account","id": "ba_0LK9sazX8tPl54","last4": "3532","country": "US","currency": "usd","status": "new","fingerprint": "AMyAAyMWZEg1LDfU","routing_number": "322271627","bank_name": "J.P. MORGAN CHASE BANK, N.A.","default_for_currency": true},
+			type: 'json' //{"object": "bank_account","id": "ba_0LK9sazX8tPl54","last4": "3532","country": "US","currency": "usd","status": "new","fingerprint": "AMyAAyMWZEg1LDfU","routing_number": "322271627","bank_name": "J.P. MORGAN CHASE BANK, N.A.","default_for_currency": true},
 		},
 		destination: {
 			type: 'string' //"ba_0LK9sazX8tPl54"
@@ -134,7 +134,7 @@ module.exports = {
 	      .exec(function(err, updatedTransfers){
 	      	if (err) return cb(err);
 	      	if(!updatedTransfers) return cb(null, null);
-	      	Transfer.afterStripeTransferUpdated(updatedTransfers[0], function(err,transfer){
+	      	Transfer.afterStripeTransferUpdated(updatedTransfers[0], function(err, updatedTransfer){
 	      		cb(err, updatedTransfer);
 	      	});
 	      });

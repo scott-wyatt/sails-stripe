@@ -12,9 +12,9 @@ module.exports = {
 
 	attributes: {
 		id: {
-	  		type: 'string', //"fee_5zu43QOh0tbSiC"
+			type: 'string', //"fee_5zu43QOh0tbSiC"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: {
 			type: 'string' //"application_fee"

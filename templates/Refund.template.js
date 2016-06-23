@@ -14,7 +14,7 @@ module.exports = {
 		id: {
 			type: 'string', //"re_3IH1NqUxYmyx2n"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		amount: {
 			type: 'integer' //500

@@ -12,9 +12,9 @@ module.exports = {
 	
 	attributes: {
 		id: {
-	  		type: 'string', //"ba_16q4nxBw8aZ7QiYmwqM3lvdR"
+			type: 'string', //"ba_16q4nxBw8aZ7QiYmwqM3lvdR"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: {
 			type: 'string' //"bank_account"
@@ -51,7 +51,7 @@ module.exports = {
 		},
 		customer: {
 			model: 'Customer'
-		}
+		},
 
 		//Added to Model and doesn't exists in Stripe
 		lastStripeEvent: {

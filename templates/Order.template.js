@@ -12,9 +12,9 @@ module.exports = {
 	
 	attributes: {
 		id: {
-	  		type: 'string', //"or_16q4o6Bw8aZ7QiYmxfWfodKl"
+			type: 'string', //"or_16q4o6Bw8aZ7QiYmxfWfodKl"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		created: {
 			type: 'datetime' //1443458925

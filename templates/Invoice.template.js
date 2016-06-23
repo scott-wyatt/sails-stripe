@@ -15,7 +15,7 @@ module.exports = {
 		id: {
 			type: 'string', //"in_5OfJeYHbLtvBJ7"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		date: {
 			type: 'datetime' // 1416984752

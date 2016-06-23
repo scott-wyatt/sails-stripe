@@ -14,7 +14,7 @@ module.exports = {
 		id: {
 			type: 'string',
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		object: {
 			type: 'string'

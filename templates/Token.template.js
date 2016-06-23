@@ -15,7 +15,7 @@ module.exports = {
 		id: {
 			type: 'string', //"tok_16GhzzBw8aZ7QiYmauEtvWUU"
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		livemode: {
 			type: 'boolean' //false

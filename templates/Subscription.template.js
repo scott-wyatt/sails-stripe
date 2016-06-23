@@ -13,7 +13,7 @@ module.exports = {
 		id: {
 			type: 'string', // sub_xxxxxxxxxx
 			primaryKey: true,
-    		unique: true
+			unique: true
 		},
 		plan: {
 			type: 'json'
@@ -154,7 +154,7 @@ module.exports = {
 	      if (err) return cb(err);
 	      if (!destroyedSubscriptions) return cb(null, subscription);
 	      Subscription.afterStripeCustomerSubscriptionDeleted(destroyedSubscriptions[0], function(err, subscription){
-	      	cb(null, subscription);
+	      	cb(err, subscription);
 	      });
 	    });
 	},
